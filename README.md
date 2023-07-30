@@ -8,37 +8,54 @@ The purpose of this project is to develop an artificial intelligence to classify
 
 **Keywords**: [`DDoS attacks`](https://www.digitalattackmap.com/); [`SDN network`](https://www.opennetworking.org/sdn-definition/); [`Artificial Intelligence classification`](https://www.sciencedirect.com/science/article/abs/pii/016974399500050X); [`Mininet`](http://mininet.org/)
 
-## Index
+### CODE EXPLANATION ###
 
-- [Installation methods](#installation-methods-wrench)
-  * Vagrant
-  * Native
-- [Our scenario]
-  * Running the scenario
-  * Is working properly?
-    
-- [Attack time!]
-    + Time to limit the links
-    + Getting used to hping3
-    + Installing things.
-    + Usage
-    + Demo time!
-    + Wanted a video?
-   
-- [Traffic classification with a SVM (**S**upport **V**ector **M**achine)]
-  * First step: Getting the data collection to work
-  * Second step: Generating the training datasets
-  * Third step: Putting it all together: `src/traffic_classifier.py`
-- [Mininet CLI (**C**ommand **L**ine **I**nterface)]
-- [Mininet Internals]
-  * Network Namespaces
-- [Mininet Internals (II)
-  * Is Mininet using Network Namespaces?
-  * The Big Picture
-      - How would our Kernel-level scenario look then?
-- [Troubleshooting]
-- [Appendix]
-  * The Vagrantfile
-  * File descriptors: `stdout` and friends
+[src-> SVM.ipynb]
+The provided Python code performs a classification task using Support Vector Machine (SVM) on a dataset, and it evaluates the performance of the classifier using various metrics. Below is a summary of the code:
 
+1. Import necessary libraries: `pandas` for data manipulation and analysis, `sklearn` for machine learning tools, and specific functions and classes from `sklearn`.
 
+2. Load the dataset from a CSV file named 'dataset.csv' into a Pandas DataFrame. The dataset contains three columns: 'curr_derivative', 'mean', and 'label'. 'curr_derivative' and 'mean' are the features, and 'label' is the target variable to be predicted.
+
+3. Split the dataset into features (X) and the target variable (y).
+
+4. Split the data into training and testing sets using the `train_test_split` function. It uses 70% of the data for training and 30% for testing.
+
+5. Create a Support Vector Machine (SVM) classifier using `svm.SVC` with a linear kernel.
+
+6. Train the SVM classifier using the training data (features and labels) with the `fit` method.
+
+7. Make predictions on the test data using the trained classifier with the `predict` method.
+
+8. Calculate and print various metrics to evaluate the classifier's performance:
+
+   - Accuracy: The percentage of correctly classified instances in the test set.
+   - Precision: The percentage of true positive predictions out of all positive predictions.
+   - Recall: The percentage of true positive predictions out of all actual positive instances.
+   - Confusion matrix: A matrix showing the number of true positive, true negative, false positive, and false negative predictions.
+   - Classification report: A report showing precision, recall, F1-score, and support for each class.
+   - Correct predictions percentage: The percentage of correct predictions.
+   - Wrong predictions percentage: The percentage of incorrect predictions.
+
+Overall, this code uses SVM to create a classification model based on the provided dataset. It then evaluates the model's performance using various metrics, providing insights into the accuracy and quality of the predictions made by the SVM classifier.
+
+[src-> data_gathering.py]
+The provided Python code is a script that queries a time-series database (InfluxDB) to retrieve a set of data points, processes the data, and then saves it to a CSV file. Below is a summary of the code:
+
+1. Import necessary libraries: `influxdb` for interacting with the InfluxDB, and `sys` for system-level operations.
+
+2. Define the `QUERY` string, which contains an InfluxQL query to retrieve data from the 'net' measurement in the database. The query calculates the derivative of the 'icmp_inechos' field and orders the results in descending order, limiting the number of results to 100.
+
+3. Initialize variables `n_samples` and `mean` to keep track of the number of data samples and the running mean, respectively.
+
+4. The code checks the number of command-line arguments provided when executing the script and sets up the InfluxDB connection accordingly. The script accepts 0 to 4 arguments: measurement_class, InfluxDB_IP, InfluxDB_port, and DB_name, and uses default values for missing arguments.
+
+5. Open an output file named "ICMP_data_class_{measurement_class}.csv" in write mode to save the processed data.
+
+6. The code queries the InfluxDB database using the defined `QUERY` and iterates through the retrieved data points for the 'net' measurement.
+
+7. For each data point, it calculates the current derivative ('d_ping') and updates the running mean. The script then writes the data, mean, and measurement_class to the output file in CSV format.
+
+8. After processing all data points, the output file is closed, and a message is printed indicating that the class-specific training dataset has been generated.
+
+In summary, this script serves as a data processing tool that queries a specific InfluxDB database for time-series data, calculates the derivative of a specified field, and computes the running mean of the derivatives. It then saves the processed data along with the mean and measurement class to a CSV file for further analysis or use in machine learning tasks. The script allows for customization of the database connection and the output file's name based on the command-line arguments provided when executing the script.
