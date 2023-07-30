@@ -11,7 +11,8 @@ The purpose of this project is to develop an artificial intelligence to classify
 
 ## CODE EXPLANATION
 
-### [src-> SVM.ipynb]:
+### [src]
+## [src-> SVM.ipynb]:
 The provided Python code performs a classification task using Support Vector Machine (SVM) on a dataset, and it evaluates the performance of the classifier using various metrics. Below is a summary of the code:
 
 1. Import necessary libraries: `pandas` for data manipulation and analysis, `sklearn` for machine learning tools, and specific functions and classes from `sklearn`.
@@ -114,3 +115,65 @@ The provided Python code is a simple script for generating pings to a specified 
 9. The script concludes execution and exits.
 
 In summary, this script is a simple tool for generating pings to a specific IP address. It is useful for basic ping testing and measuring the response time to a destination. It can be used to verify network connectivity and diagnose network-related issues.
+
+
+### [src-> scenario_basic.py]:
+The provided Python code is a script for creating a basic network scenario using the Mininet network emulator. It sets up a simple network topology with switches and hosts, adds links between them, and starts a controller for the switches. Additionally, it starts a telegraf process on one of the hosts for monitoring purposes. Below is a summary of the code:
+
+1. Import necessary classes and functions from the Mininet library and other required libraries.
+
+2. Define a function named `scenario_basic()` that creates the network scenario.
+
+3. Inside the `scenario_basic()` function, create a Mininet instance (`net`) with specified options, including the host and link types and the IP address base.
+
+4. Add a remote Ryu controller (`c0`) to the Mininet network.
+
+5. Add three Open vSwitch (OVS) switches (`s1`, `s2`, and `s3`) to the network.
+
+6. Add six hosts (`h1` to `h6`) to the network, each with a specific IP address.
+
+7. Add links between the switches and hosts with specified bandwidths (`bw`) and maximum queue sizes (`max_queue_size`).
+
+8. Build the network topology.
+
+9. Start the Ryu controller for the switches.
+
+10. Set the controllers for switches `s1`, `s2`, and `s3`.
+
+11. Start Telegraf on one of the hosts (`h4`) to collect monitoring data.
+
+12. Run the Mininet Command-Line Interface (CLI) to interact with the created network.
+
+13. When the CLI is closed, stop the Mininet network.
+
+14. Finally, if the script is executed as the main program, set the log level to 'info' and call the `scenario_basic()` function to run the network scenario.
+
+In summary, this script is a basic Mininet scenario that creates a simple network topology with switches and hosts, sets up a Ryu controller, and starts a Telegraf process for monitoring. The Mininet CLI allows users to interact with the network and inspect its behavior.
+
+
+### [src-> traffic_classifier.py]
+The provided Python code is a network anomaly detection script using a Support Vector Machine (SVM) classifier to detect Distributed Denial of Service (DDoS) attacks based on network ping data. The script fetches data from an InfluxDB database, trains the SVM with the provided training datasets, and continuously monitors incoming network ping data to determine if an attack is taking place. Below is a summary of the code:
+
+1. Import necessary libraries: `influxdb`, `datetime`, `time`, `os`, and `signal`.
+
+2. Define a class named `gar_py` that handles the anomaly detection process.
+
+3. The `gar_py` class constructor initializes various parameters and sets up the InfluxDB connection and SVM classifier.
+
+4. The `train_svm()` method reads training datasets from CSV files, processes the data, and trains the SVM classifier.
+
+5. The `work_time()` method continuously fetches new ping data from the InfluxDB database, calculates the mean of the data, and uses the SVM classifier to detect if an attack is occurring.
+
+6. The `under_attack()` method predicts whether the network is under attack using the SVM classifier.
+
+7. The `get_data()` method queries data from the InfluxDB database.
+
+8. The `ring_the_alarm()` method writes the attack status to the InfluxDB database.
+
+9. The script sets up signal handling to gracefully handle Ctrl+C termination.
+
+10. In the main part of the script, it creates an instance of the `gar_py` class with the desired database host and debugging mode.
+
+11. The script then starts the anomaly detection process with `ai_bot.work_time()`.
+
+In summary, this script is a simple network anomaly detection tool that uses a Support Vector Machine (SVM) classifier to detect DDoS attacks based on ping data fetched from an InfluxDB database. The script continuously monitors the network for signs of attacks and writes the attack status to the database when an attack is detected. It serves as a basic example of how machine learning techniques can be applied to detect network anomalies and security threats.
