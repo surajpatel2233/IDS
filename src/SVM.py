@@ -31,6 +31,6 @@ print("Recall:",metrics.recall_score(y_test, y_pred))
 print('Confusion matrix is as follows\n',confusion_matrix(y_test,y_pred))
 print('Accuracy Metrics')
 print(classification_report(y_test,y_pred))
-print(" correct predicition",metrics.accuracy_score(y_test,y_pred))
-print(" worng predicition",(1-metrics.accuracy_score(y_test,y_pred)))
+print("Correct predicition",metrics.accuracy_score(y_test,y_pred))
+print("Worng predicition",(1-metrics.accuracy_score(y_test,y_pred)))
 
