@@ -12,7 +12,7 @@ The purpose of this project is to develop an artificial intelligence to classify
 ## CODE EXPLANATION
 
 ### [src]
-## [src-> SVM.ipynb]:
+#### [src-> SVM.ipynb]:
 The provided Python code performs a classification task using Support Vector Machine (SVM) on a dataset, and it evaluates the performance of the classifier using various metrics. Below is a summary of the code:
 
 1. Import necessary libraries: `pandas` for data manipulation and analysis, `sklearn` for machine learning tools, and specific functions and classes from `sklearn`.
