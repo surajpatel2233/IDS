@@ -8,10 +8,10 @@ The purpose of this project is to develop an artificial intelligence to classify
 
 **Keywords**: [`DDoS attacks`](https://www.digitalattackmap.com/); [`SDN network`](https://www.opennetworking.org/sdn-definition/); [`Artificial Intelligence classification`](https://www.sciencedirect.com/science/article/abs/pii/016974399500050X); [`Mininet`](http://mininet.org/)
 
+
 ## CODE EXPLANATION
 
 **[src-> SVM.ipynb]:**
-
 The provided Python code performs a classification task using Support Vector Machine (SVM) on a dataset, and it evaluates the performance of the classifier using various metrics. Below is a summary of the code:
 
 1. Import necessary libraries: `pandas` for data manipulation and analysis, `sklearn` for machine learning tools, and specific functions and classes from `sklearn`.
@@ -40,8 +40,8 @@ The provided Python code performs a classification task using Support Vector Mac
 
 Overall, this code uses SVM to create a classification model based on the provided dataset. It then evaluates the model's performance using various metrics, providing insights into the accuracy and quality of the predictions made by the SVM classifier.
 
-**[src-> data_gathering.py]:**
 
+**[src-> data_gathering.py]:**
 The provided Python code is a script that queries a time-series database (InfluxDB) to retrieve a set of data points, processes the data, and then saves it to a CSV file. Below is a summary of the code:
 
 1. Import necessary libraries: `influxdb` for interacting with the InfluxDB, and `sys` for system-level operations.
@@ -62,8 +62,8 @@ The provided Python code is a script that queries a time-series database (Influx
 
 In summary, this script serves as a data processing tool that queries a specific InfluxDB database for time-series data, calculates the derivative of a specified field, and computes the running mean of the derivatives. It then saves the processed data along with the mean and measurement class to a CSV file for further analysis or use in machine learning tasks. The script allows for customization of the database connection and the output file's name based on the command-line arguments provided when executing the script.
 
-**[src-> ddos.py]:**
 
+**[src-> ddos.py]:**
 The provided Python code is a simple script for performing a Distributed Denial of Service (DDoS) attack using the hping3 tool. The script takes a single command-line argument, which is the destination IP address that the attack will be launched against. Below is a summary of the code:
 
 1. Import necessary libraries: `os`, `sys`, `time`, and `datetime`.
