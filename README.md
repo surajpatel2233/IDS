@@ -10,7 +10,8 @@ The purpose of this project is to develop an artificial intelligence to classify
 
 ## CODE EXPLANATION
 
-[src-> SVM.ipynb]
+**[src-> SVM.ipynb]:**
+
 The provided Python code performs a classification task using Support Vector Machine (SVM) on a dataset, and it evaluates the performance of the classifier using various metrics. Below is a summary of the code:
 
 1. Import necessary libraries: `pandas` for data manipulation and analysis, `sklearn` for machine learning tools, and specific functions and classes from `sklearn`.
@@ -39,7 +40,8 @@ The provided Python code performs a classification task using Support Vector Mac
 
 Overall, this code uses SVM to create a classification model based on the provided dataset. It then evaluates the model's performance using various metrics, providing insights into the accuracy and quality of the predictions made by the SVM classifier.
 
-[src-> data_gathering.py]
+**[src-> data_gathering.py]:**
+
 The provided Python code is a script that queries a time-series database (InfluxDB) to retrieve a set of data points, processes the data, and then saves it to a CSV file. Below is a summary of the code:
 
 1. Import necessary libraries: `influxdb` for interacting with the InfluxDB, and `sys` for system-level operations.
@@ -59,3 +61,29 @@ The provided Python code is a script that queries a time-series database (Influx
 8. After processing all data points, the output file is closed, and a message is printed indicating that the class-specific training dataset has been generated.
 
 In summary, this script serves as a data processing tool that queries a specific InfluxDB database for time-series data, calculates the derivative of a specified field, and computes the running mean of the derivatives. It then saves the processed data along with the mean and measurement class to a CSV file for further analysis or use in machine learning tasks. The script allows for customization of the database connection and the output file's name based on the command-line arguments provided when executing the script.
+
+**[src-> ddos.py]:**
+
+The provided Python code is a simple script for performing a Distributed Denial of Service (DDoS) attack using the hping3 tool. The script takes a single command-line argument, which is the destination IP address that the attack will be launched against. Below is a summary of the code:
+
+1. Import necessary libraries: `os`, `sys`, `time`, and `datetime`.
+
+2. Define various global parameters used throughout the script. These parameters include error messages, informational messages, attack settings (such as packets cadence, packets length, data length, etc.), and initial wait time.
+
+3. Define helper functions:
+   - `get_str_time()`: Returns the current time in a specific format.
+   - `diff()`: Calculates the time difference between the current time and the time the script was initiated (stored in `time_init`).
+
+4. The script starts by checking the number of command-line arguments provided when executing the script. It expects exactly one argument, which is the destination IP address. If the argument count is incorrect, it prints an error message and exits the script.
+
+5. After verifying the argument, it initializes the `time_init` variable to store the current time when the script starts.
+
+6. The script informs the user that the DDoS attack is starting on the given destination IP address and provides instructions to stop the attack (by pressing CTRL+C). It then pauses for a brief moment using `os.system('sleep ' + str(INIT_WAIT))`.
+
+7. The script uses the `hping3` tool to initiate the DDoS attack. It runs the `hping3` command with the provided destination IP address and specific options (`-V` for verbose, `-1` for ICMP echo request, `-d 1400` for packet data size, and `--faster` to send packets at maximum speed).
+
+8. After the attack is executed, the script shows the attack statistics, including the time elapsed since the attack started and the data sent in MB.
+
+9. The script concludes by printing a message indicating that the attack has completed.
+
+In summary, this script is a simple and potentially harmful tool for launching a DDoS attack using the hping3 tool. DDoS attacks are illegal and unethical, and this script should not be used for any malicious or harmful purposes. It is essential to use programming knowledge responsibly and always adhere to ethical guidelines and legal regulations.
